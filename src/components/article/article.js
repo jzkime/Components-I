@@ -115,3 +115,51 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+function articleMaker({ title, date, firstParagraph, secondParagraph, thirdParagraph }) {
+  const articleDiv = document.createElement("div");
+  const headingTag = document.createElement("h2");
+  const paraDate = document.createElement("p");
+  const paraFirst = document.createElement("p");
+  const paraSec = document.createElement("p");
+  const paraThird = document.createElement("p");
+  const spanBtn = document.createElement("span");
+
+  articleDiv.classList.add("article");
+  paraDate.classList.add("date");
+  paraDate.textContent = date;
+
+  headingTag.textContent = title;
+
+  paraFirst.textContent = firstParagraph;
+  paraSec.textContent = secondParagraph;
+  paraThird.textContent = thirdParagraph;
+
+  spanBtn.classList.add("expandButton");
+  spanBtn.textContent = "+";
+
+  articleDiv.appendChild(headingTag);
+  articleDiv.appendChild(paraDate);
+  articleDiv.appendChild(paraFirst);
+  articleDiv.appendChild(paraSec);
+  articleDiv.appendChild(paraThird);
+  articleDiv.appendChild(spanBtn);
+
+  spanBtn.addEventListener("click", () => {
+    articleDiv.classList.toggle("article-open");
+  })
+
+  return articleDiv;
+}
+
+// const textArticle = {title: "Henlo", date: "10/19/1213", firstParagraph: "lorem ipsim siei fjsaf", secondParagraph:"sdfk sdkj skdf", thirdParagraph: "this is the third paragraaaaaph giraffe."};
+// document.querySelector(".articles").appendChild(articleMaker(textArticle));
+
+data.push({title: "Henlo", date: "10/19/1213", firstParagraph: "lorem ipsim siei fjsaf", secondParagraph:"sdfk sdkj skdf", thirdParagraph: "this is the third paragraaaaaph giraffe."});
+
+const articlesPlace = document.querySelector(".articles");
+
+data.forEach(dataObj => {
+  const arti = articleMaker(dataObj);
+  articlesPlace.appendChild(arti);
+})
